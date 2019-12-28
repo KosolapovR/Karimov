@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <main class='row no-gutters wrapper'>
+            <section class="catalog col">
+               <div class="catalog-container">
+                   <h4 class="index__h4">Новинки</h4>
+                <ul class="product__list row d-flex justify-content-between">
+                    {% for i in 1..4 %}
+                    <li class="product__item col">
+                      <div class="product__item__row d-flex align-items-end flex-column">
+                          <div class="product__item__col">
+                              <a href="{{ path('product') }}" class="product__item__link">
+                           <img src="{{ asset('images/photo2.jpg') }}" alt="" class="product__item__photo">
+                       </a>  
+                        </div>
+                         <div class="product__item__col mt-auto">
+                          <div class="product__item__title"><a href="{{ path('product') }}">Запчасть</a></div>
+                          <div class="product__item__published">14.02.2019</div>
+                          <div class="product__item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni aperiam qui, velit vel praesentium, adipisci voluptates quia ad aut libero.</div>
+                        <div class="product__item__price">1 000 &#8381;</div>
+                         </div>     
+                      </div>
+                      <a href="{{ path('product') }}"  class="product__item__hidden-layer"></a>
+                    </li>
+                    {% endfor %}
+
+                </ul> 
+               </div>    
+            </section>
+
+        </main>
+{% endblock %}

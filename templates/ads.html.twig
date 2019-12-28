@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<main>
+    <div class="wrapper">
+        <section class="ads__container row">
+            <aside class="search col-md-3">
+                <span class="your_search">Ваш поиск:</span><input type="text">
+                <span class="show_only">Показать только:</span>
+                <input type="checkbox"><span class="adds_with_photo">Объявления с фотографиями</span>
+                <span class="price">Цена</span>
+                <span class="price--min">Min: </span><input type="text" name=price_min><br>
+                <span class="price-max">Max:</span><input type="text" name=price_max><br>
+               <div class="btn--search--container"> <div class="btn btn-search">Применить</div></div>
+            </aside>
+            <div class="ads_container col"><span class="ads__title">Объявления</span>
+                <ul class="ads row">
+                    {% for i in 1..12 %}
+                    <li class="ad__item col">
+                        <div class="ad__item__row d-flex align-items-end flex-column">
+                            <div class="ad__item__col">
+                              <a href="#" class="ad__item__link">
+                                  <img src="{{ asset('images/photo2.jpg') }}" alt="" class="ad__item__photo">
+                              </a>  
+                            </div>
+                            <div class="ad__item__col mt-auto">
+                                <div class="ad__item__title"><a href="#">Запчасть</a></div>
+                                <div class="ad__item__published">14.02.2019</div>
+                                <div class="ad__item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni aperiam qui, velit vel praesentium, adipisci voluptates quia ad aut libero.</div>
+                                <div class="ad__item__price">1 000 &#8381;</div>
+                            </div>     
+                        </div>
+                      <a href="#"  class="ad__item__hidden-layer"></a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

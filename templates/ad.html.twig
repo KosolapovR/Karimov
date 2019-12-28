@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <main class='row no-gutters'>
+            <section class="catalog col">
+               <div class="catalog-container">
+                   
+                    <div class="row product__container wrapper">
+                        <div class="product__photo col-md-7">
+                              <div class="d-flex justify-content-between">
+                               <h2 class="product__photo__title" >Пружина СТ-239</h2><span class="product__photo__price">2250 руб.</span>
+                               </div>
+                               <div class="product__published">
+                                   <span class="bold">Дата публикации: </span>1 января 2020<br>
+                                   <span class="bold">Местоположение: </span>Шлиссельбург
+                               </div>
+                               <div class="d-flex justify-content-between">
+                            <div class="photo__main">
+                                <img src="{{ asset('images/photo1-1.jpg') }}" id="photo__main" alt="product">
+                            </div>
+                            <div class="photo_column justify-self-center d-flex flex-column">
+                                <img src="{{ asset('images/photo1-2.jpg') }}" alt="product" id="photo__secondary--1" class="photos__item">
+                                <img src="{{ asset('images/photo1-3.jpg') }}" alt="product" id="photo__secondary--2" class="photos__item">
+                                <img src="{{ asset('images/photo1-4.jpg') }}" alt="product" id="photo__secondary--3" class="photos__item">
+                            </div>
+                            </div>
+                            <div class="product__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quod necessitatibus tempore alias. Voluptates hic, cumque optio recusandae incidunt voluptatibus?</div>
+                        </div>
+                        <div class="feedback__container col-md-5">
+                            <div class="feedback">
+                                <h3 class="feedback__title">Связаться с автором</h3>
+                                <div class="feedback__name">
+                                    Имя: Demo
+                                </div>
+                                <div class="feedback__phone">
+                                    Телефон: 7911659125
+                                </div>
+                                <span class="feedback__span">
+                                    Ваше имя:
+                                </span>
+                                <input type="text" class="feedback__input">
+                                <span class="feedback__span">
+                                    Адрес вашей электронной почты:
+                                </span>
+                                <input type="text" class="feedback__input">
+                                <span class="feedback__span">
+                                    Номер телефона (Опционально):
+                                </span>
+                                <input type="text" class="feedback__input">
+                                <span class="feedback__span">
+                                    Сообщение:
+                                </span>
+                                <textarea class="feedback__textarea" name="feedback__textarea" id="feedback__textarea" cols="23" rows="3"></textarea>
+                                <div class="captcha"></div>
+                                <div class="btn--send">Отправить</div>
+                            </div>
+                        </div>
+                    </div>
+               </div>    
+            </section>
+        </main>
+{% endblock %}

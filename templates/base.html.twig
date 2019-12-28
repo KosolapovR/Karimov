@@ -2,11 +2,84 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Karimov{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600i,700&display=swap" rel="stylesheet">
+        {% endblock %}
     </head>
     <body>
+      <div class="content">
+       <header class=''>
+           <div class="wrapper row no-gutters">
+            <div class="left_header col-sm-7">
+                <div class="logo__title">ИП КАРИМОВ</div>
+                <div class="logo__subtitle">
+                техническое снабжение судоходных компаний
+                </div>
+            </div>
+            <div class="right_header col-sm-5 align-self-center">
+               <div class="login__container">
+                   {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('logout') }}" class="login">Выйти</a>
+                    {% else %}
+                   <a href="{{ path('login') }}" class="login">Войти</a>
+                   <a href="{{ path('registration') }}" class="registration">Зарегистрироваться</a>
+                   {% endif %}
+               </div>
+                <div class="input-group w-75 ml-auto">
+                    <input type="text" class="form-control" placeholder="Поиск по сайту">
+                    <div class="input-group-append">
+                      <button class="btn btn-secondary" type="button">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                </div>
+                <div class="phone">Тел: 89994445152</div>
+                <div class="email">Email: example@mail.ru</div>
+            </div>
+            </div>
+        </header>
+        <div class="nav__container">       
+        <nav class="wrapper navbar navbar-light navbar-expand-sm">
+              <a class="navbar-brand" href="#"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav row w-100">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('main') }}">Главная <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ path('catalog') }}">Каталог</a>
+                  </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ path('ads') }}">Объявления</a>
+                  </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="requisites.php">Реквизиты</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+        </div>        
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        </div>
+        <footer>
+            <div class="footer__contacts wrapper p-5">8951659185</div>
+        </footer>
+        {% block javascripts %}
+            <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="https://kit.fontawesome.com/0f541523eb.js" crossorigin="anonymous"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

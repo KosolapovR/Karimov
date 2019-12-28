@@ -1,0 +1,32 @@
+easy_admin:
+    entities:
+        # List the entity class name you want to manage
+        User:
+            class: App\Entity\User
+            label: 'Пользователи'
+        Product:
+            class: App\Entity\Product
+            label: 'Товары'
+                
+           # list:
+            #    fields: 
+              #      - { property: 'photos', type_options: { class: 'App\Entity\Photo' } }
+        Photo:
+            class: App\Entity\Photo
+            label: 'Фотографии'
+            form: 
+                fields:
+                    - product
+                    - {property: 'imageFile', type: 'file'}
+
+            list:
+                fields:
+                    - {property: 'image', label: 'Фото', type: 'image', base_path: '%app.path.product_images%'}
+                    - {property: 'product', label: 'Название товара', type: 'text'}
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.product_images%' }
+
+        
+        
+        
