@@ -58,6 +58,12 @@ class Product
      */
     private $photos;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
 
     public function __construct()
     {
@@ -186,5 +192,17 @@ class Product
 
     public function __toString() {
         return $this->name;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
     }
 }

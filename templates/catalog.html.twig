@@ -1,36 +1,39 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <main class='row no-gutters wrapper'>
-            <section class="catalog col">
+    <main class='wrapper'>
+            <section class="catalog">
                <div class="catalog-container">
                    <h4>Фото-каталог судовых запчастей</h4>
-                <ul class="category_list row no-gutters dflex">
-                    <li class="catalog_list__item col-sm-4"><a href="">Пружины</a></li>
-                    <li class="catalog_list__item col-sm-4"><a href="">Двигатели</a></li>
-                    <li class="catalog_list__item col-sm-4"><a href="">Трансмиссии</a></li>
-                    <li class="catalog_list__item col-sm-4"><a href="">Втулки</a></li>
-                    <li class="catalog_list__item col-sm-4"><a href="">Подшипники</a></li>
-                    <li class="catalog_list__item col-sm-4"><a href="">Валы</a></li>
-                    <li class="catalog_list__item col-sm-4"><a href="">Аккумуляторы</a></li>
-                    <li class="catalog_list__item col-sm-4"><a href="">Разное</a></li>
+                <ul class="category_list row dflex">
+                    {% for category in categories%}
+                    <li class="catalog_list__item col-sm-4"><a href="{{ path('catalog_category', {id: category.id }) }}">{{ category.name }}</a></li>
+                    {% endfor %}
                 </ul>
-                 <ul class="product__list row dflex justify-content-between">
-                   {% for i in 1..12 %}
-                    <li class="product__item col">
+                 <ul class="product__list row d-flex">
+                   {% for product in products %}
+                       
+                    <li class="product__item__container col-3 p-2">
+                        <div class="product__item h-100">
                       <div class="product__item__row d-flex align-items-end flex-column">
                           <div class="product__item__col">
-                              <a href="{{ path('product') }}" class="product__item__link">
-                           <img src="{{ asset('images/photo3.jpg') }}" alt="product" class="product__item__photo">
+                              <a href="{{ path('product_show', {id: product.id}) }}" class="product__item__link">
+                                  {% set img_path = 'upload/images/products/' ~ product.photos[0].image %}
+                            <img src="{{ asset(img_path) }}" alt="" class="product__item__photo">
                        </a>  
                         </div>
-                         <div class="product__item__col mt-auto">
-                          <div class="product__item__title"><a href="{{ path('product') }}">Запчасть</a></div>
-                          <div class="product__item__published">14.02.2019</div>
-                          <div class="product__item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni aperiam qui, velit vel praesentium, adipisci voluptates quia ad aut libero.</div>
-                        <div class="product__item__price">1 000 &#8381;</div>
-                         </div>     
-                      </div>
-                      <a href="{{ path('product') }}"  class="product__item__hidden-layer"></a>
+                            <div class="product__item__col w-100 mt-auto">
+                                <div class="product__item__title"><a href="{{ path('product_show', {id: product.id}) }}">{{ product.name }}</a></div>
+                                <div class="product__item__published">{{ product.dateAt|date('d.m.Y') }}</div>
+                                <div class="product__item__description">{{ product.description }}</div>
+                                {% if (product.price == 'по запросу')%}
+                                <div class="product__item__price">Цена {{ product.price }}</div>
+                                {% else %}
+                                <div class="product__item__price">{{ product.price }} &#8381;</div>
+                                {% endif %}
+                            </div>     
+                        </div>
+                      <a href="{{ path('product_show', {id: product.id}) }}"  class="product__item__hidden-layer"></a>
+                      </div>   
                     </li>
                    {% endfor %}
                 </ul>     

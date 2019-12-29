@@ -1,12 +1,33 @@
 easy_admin:
+    design:
+        form_theme: '@EasyAdmin/form/bootstrap_4.html.twig'
+        
     entities:
         # List the entity class name you want to manage
         User:
             class: App\Entity\User
             label: 'Пользователи'
+        Category:
+            class: App\Entity\Category
+            label: 'Категории'
         Product:
             class: App\Entity\Product
             label: 'Товары'
+            list:
+                fields:
+                    - id
+                    - {property: 'enabled', label: 'В продаже'}
+                    - {property: 'photos[0].image', label: 'Фото', type: 'image', base_path: '%app.path.product_images%'}
+                    - {property: 'name', label: 'Название'}
+                    - {property: 'category', label: 'Категория'}
+                    - {property: 'price', label: 'Цена', type: 'string'}
+                    - {property: 'description', label: 'Описание'}
+                    - {property: 'dateAt', label: 'Опубликован'}
+                    - {property: 'location', label: 'Регион'}
+                    - {property: 'user.email', label: 'Владелец', type: 'email'}
+            show:
+                title: '%%entity_label%% (#%%entity_id%%)'
+                    
                 
            # list:
             #    fields: 

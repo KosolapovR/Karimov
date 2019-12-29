@@ -106,11 +106,6 @@ header{
     margin-bottom: 30px;
 } 
 
-.catalog{
-
-    
-}
-
 .catalog-container{
 
     padding: 30px;
@@ -123,7 +118,8 @@ header{
 .category_list{
     margin-bottom: 40px;
     margin-left: 0;
-    max-width: 600px
+    max-width: 500px;
+   
 }
 
 .catalog_list__item a{
@@ -135,7 +131,7 @@ header{
 .product__item,
 .ad__item{
     position: relative;
-    margin: 0 6px 30px;
+    margin: 0 0 30px;
     margin-bottom: 30px;
     border: 1px solid #CCC;
     border-radius: 5px;
@@ -183,7 +179,7 @@ header{
 }
 .product__item__photo__container,
 .ad__item__photo__container{
-    height: 100%;   
+    height: 100%;
 }
 
 .product__item__photo,
