@@ -11,16 +11,18 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, ['label' => 'Емайл'])
+            ->add('email', EmailType::class, ['label' => 'Эл. почта'])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => 'Пароль',
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -35,6 +37,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('name', TextType::class, ['label' => 'Имя'])
+            ->add('phone', TelType::class, ['label' => 'Телефон'])
         ;
     }
 

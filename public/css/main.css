@@ -31,6 +31,7 @@ a:hover{
     max-width: 990px!important;   
     margin: 0 auto!important;
     height: 100%;
+    width: 100%;
 }
 
 section{
@@ -182,6 +183,10 @@ header{
     height: 100%;
 }
 
+.product__item__col{
+    margin: 0 auto;
+}
+
 .product__item__photo,
 .ad__item__photo{
     border-radius: 5px;
@@ -189,6 +194,7 @@ header{
     margin: 0 auto;
     max-width: 100%;
     height: auto;
+    max-height: 200px;
     margin-bottom: 10px;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;

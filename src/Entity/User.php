@@ -30,6 +30,11 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=60)
      */
     private $email;
+    
+    /**
+     * @ORM\Column(type="string", length=15)
+     */
+    private $phone;
 
     /**
      * @ORM\Column(type="string", length=60)
@@ -91,7 +96,16 @@ class User implements UserInterface
 
         return $this;
     }
+    
+    function getPhone() {
+        return $this->phone;
+    }
 
+    function setPhone($phone) {
+        $this->phone = $phone;
+    }
+
+    
     public function getPassword(): ?string
     {
         return $this->password;
