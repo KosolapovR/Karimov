@@ -15,7 +15,8 @@
             <div class="ads_container col"><span class="ads__title">Объявления</span>
                 <ul class="ads row">
                     {% for i in 1..12 %}
-                    <li class="ad__item col">
+                        <li class="product__item__container col-sm-6 col-lg-4 p-2">
+                    <div class="ad__item h-100">
                         <div class="ad__item__row d-flex align-items-end flex-column">
                             <div class="ad__item__col">
                               <a href="#" class="ad__item__link">
@@ -30,6 +31,7 @@
                             </div>     
                         </div>
                       <a href="#"  class="ad__item__hidden-layer"></a>
+                    </div>
                     </li>
                     {% endfor %}
                 </ul>

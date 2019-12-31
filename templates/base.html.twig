@@ -21,8 +21,12 @@
                 </div>
             </div>
             <div class="right_header col-sm-5 align-self-center">
-               <div class="login__container">
+               <div class="login__container d-flex justify-content-end">
                    {% if is_granted('ROLE_USER') %}
+                       <div class="user d-flex ">
+                            <div class="user_icon"></div>
+                            <span class="user_name">{{ app.user.email }}</span>
+                       </div> 
                     <a href="{{ path('logout') }}" class="login">Выйти</a>
                     {% else %}
                    <a href="{{ path('login') }}" class="login">Войти</a>
@@ -96,10 +100,9 @@
             var minlength = 3;
             var that = this;
             var value = $(this).val();
-            var entitySelector = $(".pop_up_search").html('');
+            var entitySelector = $(".pop_up_search");
             if (value.length >= minlength ) {
-                if (searchRequest != null)
-                    searchRequest.abort();
+                if (searchRequest != null) searchRequest.abort();
                 searchRequest = $.ajax({
                     type: "GET",
                     url: "{{ path('ajax_search') }}",
@@ -109,6 +112,7 @@
                     dataType: "text",
                     success: function(msg){
                         console.log(msg);
+                         entitySelector.html('');
                         //we need to check if the value is the same
                         if (value==$(that).val()) {
                             var result = JSON.parse(msg);
@@ -126,6 +130,9 @@
                         }
                      }
                 });
+            }  
+            else{
+            entitySelector.html('');
             }
         });
     });

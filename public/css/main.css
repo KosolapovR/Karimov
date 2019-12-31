@@ -72,11 +72,27 @@ header{
 
 .login__container a{
     display: inline-block;
-    text-decoration: underline;
     color: #fff;
     cursor: pointer;
     margin-left: 10px;
     margin-bottom: 10px;
+}
+
+.login__container a:hover{
+    text-decoration: underline;
+}
+.user_icon{
+    width: 25px;
+    height: 25px;
+    background: url('../icons/user.svg');
+    margin-right: 10px;
+}
+
+.user_name{
+    color: #fff;
+    padding-right: 10px;
+    border-right: 1px solid #fff;
+    height: 25px;
 }
 
 .input-group{
@@ -172,6 +188,11 @@ header{
     -o-transition: all 0.3s;
     transition: all 0.3s;
     
+}
+
+.ad__item__col{
+    display: block;
+    margin: 0 auto;
 }
 .product__item:hover .product__item__photo,
 .ad__item:hover .ad__item__photo{
