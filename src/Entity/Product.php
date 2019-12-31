@@ -68,6 +68,7 @@ class Product
     public function __construct()
     {
         $this->photos = new ArrayCollection();
+        $this->dateAt = new \DateTime('now');
     }
 
     public function getId(): ?int

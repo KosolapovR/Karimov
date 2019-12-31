@@ -27,6 +27,20 @@ easy_admin:
                     - {property: 'user.email', label: 'Владелец', type: 'email'}
             show:
                 title: '%%entity_label%% (#%%entity_id%%)'
+            form: 
+                fields:
+                    - {property: 'name', label: 'Название'}
+                    - {property: 'category', label: 'Категория'}
+                    - {property: 'enabled', label: 'В продаже'}
+                    - {property: 'price', label: 'Цена'}
+                    - {property: 'description', label: 'Описание'}
+                    - {property: 'location', label: 'Регион'}
+                    - {property: 'photos', label: 'Фото'}
+                    
+                    
+                    
+                    
+                    
                     
                 
            # list:

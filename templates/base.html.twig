@@ -30,12 +30,13 @@
                    {% endif %}
                </div>
                 <div class="input-group w-75 ml-auto">
-                    <input type="text" class="form-control" placeholder="Поиск по сайту">
+                    <input id="search" type="text" class="form-control" placeholder="Поиск по сайту">
                     <div class="input-group-append">
                       <button class="btn btn-secondary" type="button">
                         <i class="fa fa-search"></i>
                       </button>
                     </div>
+                    <div class="pop_up_search"></div>
                 </div>
                 <div class="phone">Тел: 89994445152</div>
                 <div class="email">Email: example@mail.ru</div>
@@ -80,6 +81,55 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             <script src="https://kit.fontawesome.com/0f541523eb.js" crossorigin="anonymous"></script>
             <script src="{{ asset('js/main.js') }}"></script>
+            <script type="text/javascript">
+    jQuery(document).ready(function() {
+        var searchRequest = null;
+        
+        $('.input-group-append .btn').on('click', function(){
+            let link = $(".finded a").attr("href");
+            if(link !== undefined){
+                document.location.href = link;
+            }
+        });
+        
+        $("#search").keyup(function() {
+            var minlength = 3;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $(".pop_up_search").html('');
+            if (value.length >= minlength ) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('ajax_search') }}",
+                    data: {
+                        'text' : value
+                    },
+                    dataType: "text",
+                    success: function(msg){
+                        console.log(msg);
+                        //we need to check if the value is the same
+                        if (value==$(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function(key, arr) {
+                                $.each(arr, function(id, value) {
+                                    if (key == 'products') {
+                                        if (id != 'error') {
+                                            entitySelector.append('<li class="finded"><a href="/product/show/'+id+'">'+value+'</a></li>');
+                                        } else {
+                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                        }
+                                    }
+                                });
+                            });
+                        }
+                     }
+                });
+            }
+        });
+    });
+</script>
         {% endblock %}
     </body>
 </html>

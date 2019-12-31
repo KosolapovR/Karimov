@@ -18,7 +18,19 @@ $(document).ready(function(){
         $main_photo.attr('src', $(this).attr('src'));
         $(this).attr('src', buffer);
         }
-        
-    })
+    });
+    
+    //поиск по сайту
+    
+    let $search = $('#search');
+    let start = new Date();
+    $search.on('keyup', function(){
+
+        let now = new Date();
+        if(now - start > 1000){
+            console.log($(this).val());
+            start = now;
+        }
+    });
     
 });

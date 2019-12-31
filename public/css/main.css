@@ -80,7 +80,22 @@ header{
 }
 
 .input-group{
- 
+     position: relative;
+}
+.pop_up_search{
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 0 7px rgba(0,0,0,0.5);
+    background: #fff;
+    border-radius: 4px;
+    top: 40px;
+    color: #666;
+}
+.pop_up_search>li{
+    list-style: none;
+    margin: 6px;
+    text-align: left;
 }
 .has-search .form-control {
     padding-left: 2.375rem;

@@ -15,7 +15,7 @@ class IndexController extends AbstractController{
     public function index(){
         
         $em = $this->getDoctrine()->getManager();
-        $products = $em->getRepository(Product::class)->findBy([], ['dateAt' => 'DESC'], 4);
+        $products = $em->getRepository(Product::class)->findBy(['enabled' => true], ['dateAt' => 'DESC'], 4);
         return $this->render('index.html.twig', ['products' => $products]);
     }
 }

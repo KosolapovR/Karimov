@@ -20,8 +20,12 @@
                                <div class="d-flex justify-content-between">
                             <div class="photo__main">
                                 {% set img_path = 'upload/images/products/' %}
+                                {% if(product.photos[0] is defined) %}
                                 <img src="{{ asset(img_path ~ product.photos[0].image) }}" id="photo__main" alt="product">
-                            </div>
+                                {% else %}
+                                <img src="{{ asset(img_path ~ 'default-thumbnail.jpg') }}" id="photo__main" alt="product">
+                                {% endif %}
+                                </div>
                             <div class="photo_column justify-self-center d-flex flex-column">
                                 {% set i = 0 %}
                                 {% for photo in product.photos %}
@@ -39,10 +43,10 @@
                             <div class="feedback">
                                 <h3 class="feedback__title">Связаться с автором</h3>
                                 <div class="feedback__name">
-                                    Имя: {{ product.user.name }}
+                                    Имя: Юлай
                                 </div>
                                 <div class="feedback__phone">
-                                    Телефон: {{ product.user.phone }}
+                                    Телефон: 899977666666
                                 </div>
                                 <span class="feedback__span">
                                     Ваше имя:

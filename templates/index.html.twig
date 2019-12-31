@@ -6,13 +6,19 @@
                    <h4 class="index__h4">Новинки</h4>
                 <ul class="product__list row d-flex justify-content-between">
                     {% for product in products %}
-                    <li class="product__item__container col-sm-6 col-md-4 col-lg-3 p-2">
+                        {% if product.enabled %}
+                            <li class="product__item__container col-sm-6 col-md-4 col-lg-3 p-2">
                         <div class="product__item h-100">
-                      <div class="product__item__row d-flex align-items-end flex-column">
+                        <div class="product__item__row d-flex align-items-end flex-column">
                           <div class="product__item__col">
                               <a href="{{ path('product_show', {id: product.id}) }}" class="product__item__link">
+                               {% if(product.photos[0] is defined) %}
                                   {% set img_path = 'upload/images/products/' ~ product.photos[0].image %}
-                            <img src="{{ asset(img_path) }}" alt="" class="product__item__photo">
+                                    <img src="{{ asset(img_path) }}" alt="" class="product__item__photo justify-self-center">   
+                                     {% else %}
+                                    {% set img_path = 'upload/images/products/' %}
+                                    <img src="{{ asset(img_path ~ 'default-thumbnail.jpg') }}" class="product__item__photo justify-self-center" alt="product">
+                                     {% endif %}
                        </a>  
                         </div>
                             <div class="product__item__col w-100 mt-auto">
@@ -29,6 +35,7 @@
                       <a href="{{ path('product_show', {id: product.id}) }}"  class="product__item__hidden-layer"></a>
                         </div>
                         </li>
+                        {% endif %}
                     {% endfor %}
 
                 </ul> 
