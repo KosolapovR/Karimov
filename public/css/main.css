@@ -95,9 +95,25 @@ header{
     height: 25px;
 }
 
+.user_name--profile{
+    color: #444;
+}
+
 .input-group{
      position: relative;
 }
+
+#preloader{
+    display: none;
+    width: 25px;
+    height: 25px;
+    background: url(../icons/loader.gif);
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    z-index: 500;
+}
+
 .pop_up_search{
     z-index: 1000;
     position: absolute;
@@ -149,7 +165,7 @@ header{
 }
 .category_list{
     margin-bottom: 40px;
-    margin-left: 0;
+    margin-left: -15px;
     max-width: 500px;
    
 }
@@ -451,7 +467,9 @@ footer{
 }
 
 .btn-search,
-.btn--send{
+.btn--send,
+.btn--new-ad,
+.btn--new-ad-send{
     text-align: center;
     padding: 2px;
     background-color: #20AFC5;
@@ -464,10 +482,31 @@ footer{
     -o-transition: all 0.3s;
     transition: all 0.3s;
     color: #fff;
-
 }
+
+.btn--new-ad{
+    width: auto;
+    padding: 2px 7px;
+    margin-top: 20px;
+}
+
+.btn--new-ad-send{
+    padding: 2px 7px;
+    width: 120px;
+}
+
+.btn--new-ad a,
+.btn--new-ad-send a{
+    display: block;
+    height: 100%;
+    color: #fff;
+}
+
 .btn-search:hover,
-.btn--send:hover{
+.btn--send:hover,
+.btn--new-ad-send:hover,
+.btn--new-ad a:hover .btn--new-ad,
+.btn--new-ad-send a:hover .btn--new-ad-send{
     box-shadow: 0 0 7px rgba(0,0,0,0.5);
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
@@ -504,4 +543,22 @@ input[name=price_min]{
     display: block;
     margin-left: 25px;
     margin-bottom: 10px;
+}
+
+/* profile */
+
+.profile__text{
+    text-indent: 1.2rem;
+    text-align: justify;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #666;
+}
+
+.new_ad_form{
+    margin: 20px 0 45px 0;
+}
+
+.new_ad_form .row{
+    margin-bottom: 15px;
 }

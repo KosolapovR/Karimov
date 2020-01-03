@@ -27,6 +27,8 @@ class Category
      * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="category")
      */
     private $products;
+    
+    private $enabled;
 
     public function __construct()
     {
@@ -83,5 +85,15 @@ class Category
     
     public function __toString() {
         return $this->name;
+    }
+    
+    public function getEnabled(){
+        $i = 0;
+        foreach($this->products as $product){
+            if($product->getEnabled()) {
+                $i++;
+            }
+        }
+        return $i;
     }
 }

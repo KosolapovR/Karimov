@@ -54,7 +54,7 @@ class Ad
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="ad")
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="ad", cascade={"remove"})
      */
     private $photos;
 

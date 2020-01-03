@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<main>
+    <div class="wrapper">
+        <section class="ads__container row">
+            <aside class="search col-md-3">
+            {% if is_granted('ROLE_USER') %}
+               <div class="user d-flex ">
+                    <div class="user_icon"></div>
+                    <span class="user_name user_name--profile" >{{ app.user.email }}</span>
+               </div> 
+            {% endif %}
+            <div class="profile__text">
+                <span class="bold">{{app.user.name|capitalize}}</span>, в данном разделе вы можете опубликовать объявления. Все объявления проходят одобрение модератором, после чего публикуются в разделе "Объявления".
+            </div>
+            </aside>
+            <div class="ads_container col">
+            <div class="btn btn-search btn--new-ad"><a href="{{ path('profile')}}">Назад к моим объявлениям</a></div>
+            <div class="new_ad_form">
+                {{ form_start(newAdForm) }}  
+                <div class="row d-flex">
+                    
+                    <div class="col-sm-3">Заголовок</div>
+                    {{ form_widget(newAdForm.name, {'attr' : {'class': 'col-sm-4'}}) }}
+                </div>
+                <div class="row d-flex">
+                    <div class="col-sm-3">Цена</div>
+                    {{ form_widget(newAdForm.price, {'attr' : {'class': 'col-sm-4'}}) }}         
+                </div>
+                <div class="row d-flex">
+                    <div class="col-sm-3">Описание</div>
+                    {{ form_widget(newAdForm.description, {'attr' : {'class': 'col-sm-4'}}) }}
+                </div>
+                <div class="row d-flex">
+                    <div class="col-sm-3">Местоположение</div>
+                    {{ form_widget(newAdForm.location, {'attr' : {'class': 'col-sm-4'}}) }} 
+                </div>
+                <div class="row d-flex">
+                    <div class="col-sm-3">Фотографии</div>
+                    {{ form_widget(newAdForm.photos, {'attr' : {'class': 'col-sm-4'}}) }} 
+                </div>
+                <button class="btn--new-ad-send">Опубликовать</button>
+                {{ form_end(newAdForm) }}
+            </div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

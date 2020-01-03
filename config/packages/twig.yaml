@@ -3,3 +3,5 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     exception_controller: null
+    globals:
+        ads_image_path: '%ads_images%'

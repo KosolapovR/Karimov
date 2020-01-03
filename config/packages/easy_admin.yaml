@@ -7,9 +7,32 @@ easy_admin:
         User:
             class: App\Entity\User
             label: 'Пользователи'
+            list:
+                fields:
+                    - id    
+                    - {property: name, label: 'Имя'}
+                    - {property: email, label: 'Эл.почта'}
+                    - {property: phone, label: 'Телефон'}
+                    - {property: createdAt, label: 'Дата регистрации'}
+                    - {property: ads, label: 'Кол-во объявлений'}
+            form:
+                fields:
+                    - {property: name, label: 'Имя'}
+                    - {property: email, label: 'Эл.почта'}
+                    - {property: phone, label: 'Телефон'}
+                    - {property: ads, label: 'Объявления'}
         Category:
             class: App\Entity\Category
             label: 'Категории'
+            list:
+                fields:
+                    - id    
+                    - {property: name, label: 'Название категории'}
+                    - {property: products, label: 'Кол-во товаров'}
+            form:
+                fields:
+                    - {property: name, label: 'Название категории'}
+                    
         Product:
             class: App\Entity\Product
             label: 'Товары'
@@ -37,31 +60,43 @@ easy_admin:
                     - {property: 'location', label: 'Регион'}
                     - {property: 'photos', label: 'Фото'}
                     
+        Ad:
+            class: App\Entity\Ad
+            label: 'Объявления'
+            list:
+                fields:
+                    - id
+                    - {property: 'enabled', label: 'Опубликован'}
+                    - {property: 'photos[0].image', label: 'Фото', type: 'image', base_path: '%ads_images%'}
+                    - {property: 'name', label: 'Название'}
+                    - {property: 'price', label: 'Цена', type: 'string'}
+                    - {property: 'description', label: 'Описание'}
+                    - {property: 'dateAt', label: 'Время публикации'}
+                    - {property: 'location', label: 'Регион'}
+                    - {property: 'user.email', label: 'Владелец', type: 'email'}
+            show:
+                title: '%%entity_label%% (#%%entity_id%%)'
+            form: 
+                fields:
+                    - {property: 'name', label: 'Название'}
+                    - {property: 'enabled', label: 'Опубликован'}
+                    - {property: 'price', label: 'Цена'}
+                    - {property: 'description', label: 'Описание'}
+                    - {property: 'location', label: 'Регион'}
+                    - {property: 'photos', label: 'Фото'}            
                     
-                    
-                    
-                    
-                    
-                
-           # list:
-            #    fields: 
-              #      - { property: 'photos', type_options: { class: 'App\Entity\Photo' } }
         Photo:
             class: App\Entity\Photo
             label: 'Фотографии'
             form: 
                 fields:
-                    - product
-                    - {property: 'imageFile', type: 'file'}
+                    - {property: 'product', label: 'Название товара', type: 'text'}
+                    - {property: 'imageFile', label: 'Фото', type: 'file'}
 
             list:
                 fields:
                     - {property: 'image', label: 'Фото', type: 'image', base_path: '%app.path.product_images%'}
                     - {property: 'product', label: 'Название товара', type: 'text'}
-            show:
-                fields:
-                    - { property: 'image', type: 'image', base_path: '%app.path.product_images%' }
-
-        
+         
         
         

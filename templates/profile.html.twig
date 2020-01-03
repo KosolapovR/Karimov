@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<main>
+    <div class="wrapper">
+        <section class="ads__container row">
+            {% if is_granted('ROLE_USER') %}
+            <aside class="search col-md-3">
+               <div class="user d-flex ">
+                    <div class="user_icon"></div>
+                    <span class="user_name user_name--profile" >{{ app.user.email }}</span>
+               </div> 
+            
+            <div class="profile__text">
+                <span class="bold">{{app.user.name|capitalize}}</span>, в данном разделе вы можете опубликовать объявления. Все объявления проходят одобрение модератором, после чего публикуются в разделе "Объявления".
+            </div>
+            </aside>
+            <div class="ads_container col">
+            <div class="btn btn-search btn--new-ad"><a href="{{ path('profile_new')}}">Создать объявление</a></div>
+            <div class="ads_container__list">
+                <ul>
+                    {% for ad in ads %}
+                        
+                    <li class="ads_container__list__item d-flex">
+                        <div class="ads_container__list__item__img col-sm-4">
+                            {% for photo in ad.photos %}
+                            <img src="{{ ads_image_path}}/{{ photo.image }}" width='100%'>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="ads_container__list__item__desc">
+                            <div>{{ ad.name }} </div>
+                            <div> Дата размещения: {{ ad.dateAt|date('d/m/Y') }}</div>
+                            <div>Цена: {{ ad.price }}</div>
+                            <div>Месторасположение: {{ ad.location }}</div>
+                            <div>{{ ad.description }}</div>
+                            
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            </div>
+            {% endif %}
+        </section>
+    </div>
+</main>
+{% endblock %}

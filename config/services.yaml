@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     app.path.product_images: /upload/images/products
+    app.path.ads_images: '%kernel.project_dir%/public/upload/images/ads'
+    ads_images: '/upload/images/ads'
 
 services:
     # default configuration for services in *this* file

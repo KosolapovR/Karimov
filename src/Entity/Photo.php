@@ -38,7 +38,7 @@ class Photo
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Ad", inversedBy="photos")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Ad", inversedBy="photos", cascade={"persist"})
      */
     private $ad;
 
