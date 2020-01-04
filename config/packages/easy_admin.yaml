@@ -85,15 +85,32 @@ easy_admin:
                     - {property: 'location', label: 'Регион'}
                     - {property: 'photos', label: 'Фото'}            
                     
-        Photo:
+        Photo_ads:
             class: App\Entity\Photo
-            label: 'Фотографии'
+            label: 'Фотографии объявлений'
             form: 
                 fields:
                     - {property: 'product', label: 'Название товара', type: 'text'}
                     - {property: 'imageFile', label: 'Фото', type: 'file'}
 
             list:
+                dql_filter: 'entity.ad > 0'
+                fields:
+                    - ad
+                    - {property: 'image', label: 'Фото', type: 'image', base_path: '%ads_images%'}
+                    - {property: 'ad.name', label: 'Название объявления', type: 'text'}
+                    - {property: 'ad.user', label: 'Автор', type: 'text'}
+                    
+        Photo:
+            class: App\Entity\Photo
+            label: 'Фотографии запчастей'
+            form: 
+                fields:
+                    - {property: 'product', label: 'Название товара', type: 'text'}
+                    - {property: 'imageFile', label: 'Фото', type: 'file'}
+
+            list:
+                dql_filter: 'entity.product > 0'
                 fields:
                     - {property: 'image', label: 'Фото', type: 'image', base_path: '%app.path.product_images%'}
                     - {property: 'product', label: 'Название товара', type: 'text'}

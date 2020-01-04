@@ -5,7 +5,7 @@
         <section class="ads__container row">
             {% if is_granted('ROLE_USER') %}
             <aside class="search col-md-3">
-               <div class="user d-flex ">
+               <div class="user user--profile d-flex ">
                     <div class="user_icon"></div>
                     <span class="user_name user_name--profile" >{{ app.user.email }}</span>
                </div> 
@@ -17,27 +17,38 @@
             <div class="ads_container col">
             <div class="btn btn-search btn--new-ad"><a href="{{ path('profile_new')}}">Создать объявление</a></div>
             <div class="ads_container__list">
+              {% if (ads|length != 0) %}
+               <h4>Мои объявления:</h4>
                 <ul>
                     {% for ad in ads %}
                         
                     <li class="ads_container__list__item d-flex">
                         <div class="ads_container__list__item__img col-sm-4">
-                            {% for photo in ad.photos %}
-                            <img src="{{ ads_image_path}}/{{ photo.image }}" width='100%'>
-                            {% endfor %}
+                            
+                                {% if(ad.photos[0] is defined) %}
+                                  {% set img_path = 'upload/images/ads/' ~ ad.photos[0].image %}
+                                    <img src="{{ asset(img_path) }}" alt="" width='100%'> 
+                                     {% else %}
+                                    {% set img_path = 'upload/images/products/' %}
+                                    <img src="{{ asset(img_path ~ 'default-thumbnail.jpg') }}" width='100%'>
+                                     {% endif %}
                         </div>
                         
-                        <div class="ads_container__list__item__desc">
-                            <div>{{ ad.name }} </div>
-                            <div> Дата размещения: {{ ad.dateAt|date('d/m/Y') }}</div>
-                            <div>Цена: {{ ad.price }}</div>
-                            <div>Месторасположение: {{ ad.location }}</div>
-                            <div>{{ ad.description }}</div>
+                        <div class="ads_container__list__item__desc w-100">
+                           <div class="d-flex justify-content-between">
+                            <div class="bold ads_container__list__item__desc__title">{{ ad.name }} </div>
+                            <div class="ads_container__list__item__desc__price">Цена: <span class="bold">{{ ad.price }}</span></div>
+                            </div>
+                            <div class="ads_container__list__item__desc__date"> Дата размещения: {{ ad.dateAt|date('d.m.Y') }} г.</div>
+                            
+                            <div class="ads_container__list__item__desc__location">Месторасположение: {{ ad.location }}</div>
+                            <div class="ads_container__list__item__desc__text">{{ ad.description }}</div>
                             
                         </div>
                     </li>
                     {% endfor %}
                 </ul>
+                {% endif %}
             </div>
             </div>
             {% endif %}

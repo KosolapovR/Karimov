@@ -36,6 +36,8 @@ class ProfileController extends AbstractController{
         $form = $this->createForm(NewAdType::class, $ad);
         $form->handleRequest($request);
         $imageFile = $form['photos']->getData();
+        $entityManager = $this->getDoctrine()->getManager();
+        
         if ($form->isSubmitted() && $form->isValid()) {
             
             if ($imageFile) {
@@ -60,12 +62,13 @@ class ProfileController extends AbstractController{
                 $photo->setUpdatedAt(new \DateTime('now'));
                 //$photo->setAd($ad);
                 $ad->addPhoto($photo);
+                $entityManager->persist($photo);
             }
             $ad->setDateAt(new \DateTime('now'));
             $ad->setUser($this->getUser());
             $ad->setEnabled(false);
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($photo);
+            
+            
             $entityManager->persist($ad);
             
             $entityManager->flush();

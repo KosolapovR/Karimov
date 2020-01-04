@@ -14,20 +14,26 @@
             </aside>
             <div class="ads_container col"><span class="ads__title">Объявления</span>
                 <ul class="ads row">
-                    {% for i in 1..12 %}
+                    {% for ad in ads %}
                         <li class="product__item__container col-sm-6 col-lg-4 p-2">
                     <div class="ad__item h-100">
                         <div class="ad__item__row d-flex align-items-end flex-column">
                             <div class="ad__item__col">
                               <a href="#" class="ad__item__link">
-                                  <img src="{{ asset('images/photo2.jpg') }}" alt="" class="ad__item__photo">
+                                  {% if(ad.photos[0] is defined) %}
+                                  {% set img_path = 'upload/images/ads/' ~ ad.photos[0].image %}
+                                    <img src="{{ asset(img_path) }}" alt="" class="ad__item__photo"> 
+                                     {% else %}
+                                    {% set img_path = 'upload/images/products/' %}
+                                    <img src="{{ asset(img_path ~ 'default-thumbnail.jpg') }}" class="ad__item__photo">
+                                     {% endif %}
                               </a>  
                             </div>
                             <div class="ad__item__col mt-auto">
-                                <div class="ad__item__title"><a href="#">Запчасть</a></div>
-                                <div class="ad__item__published">14.02.2019</div>
-                                <div class="ad__item__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni aperiam qui, velit vel praesentium, adipisci voluptates quia ad aut libero.</div>
-                                <div class="ad__item__price">1 000 &#8381;</div>
+                                <div class="ad__item__title"><a href="#">{{ ad.name }}</a></div>
+                                <div class="ad__item__published">{{ ad.dateAt|date('d.m.y') }}</div>
+                                <div class="ad__item__description">{{ ad.description }}</div>
+                                <div class="ad__item__price">{{ ad.price }} &#8381;</div>
                             </div>     
                         </div>
                       <a href="#"  class="ad__item__hidden-layer"></a>

@@ -5,7 +5,7 @@
         <section class="ads__container row">
             <aside class="search col-md-3">
             {% if is_granted('ROLE_USER') %}
-               <div class="user d-flex ">
+               <div class="user user--profile d-flex ">
                     <div class="user_icon"></div>
                     <span class="user_name user_name--profile" >{{ app.user.email }}</span>
                </div> 
