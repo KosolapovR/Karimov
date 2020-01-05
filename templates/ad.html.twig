@@ -7,32 +7,46 @@
                     <div class="row product__container wrapper">
                         <div class="product__photo col-md-7">
                               <div class="d-flex justify-content-between">
-                               <h2 class="product__photo__title" >Пружина СТ-239</h2><span class="product__photo__price">2250 руб.</span>
+                                  {% if (product.price == 'по запросу')%}
+                               <h2 class="product__photo__title" >{{ product.name }}</h2><span class="product__photo__price">Цена {{ product.price }}</span>
+                               {% else %}
+                               <h2 class="product__photo__title" >{{ product.name }}</h2><span class="product__photo__price">{{ product.price }} руб.</span>
+                               {% endif %}
                                </div>
                                <div class="product__published">
-                                   <span class="bold">Дата публикации: </span>1 января 2020<br>
-                                   <span class="bold">Местоположение: </span>Шлиссельбург
+                                   <span class="bold">Дата публикации: </span>{{ product.dateAt|date('d.m.Y') }}<br>
+                                   <span class="bold">Местоположение: </span>{{ product.location }}
                                </div>
                                <div class="d-flex justify-content-between">
                             <div class="photo__main">
-                                <img src="{{ asset('images/photo1-1.jpg') }}" id="photo__main" alt="product">
-                            </div>
+                                {% set img_path = 'upload/images/ads/' %}
+                                {% if(product.photos[0] is defined) %}
+                                <img src="{{ asset(img_path ~ product.photos[0].image) }}" id="photo__main" alt="product">
+                                {% else %}
+                                <img src="{{ asset(img_path ~ 'default-thumbnail.jpg') }}" id="photo__main" alt="product">
+                                {% endif %}
+                                </div>
                             <div class="photo_column justify-self-center d-flex flex-column">
-                                <img src="{{ asset('images/photo1-2.jpg') }}" alt="product" id="photo__secondary--1" class="photos__item">
-                                <img src="{{ asset('images/photo1-3.jpg') }}" alt="product" id="photo__secondary--2" class="photos__item">
-                                <img src="{{ asset('images/photo1-4.jpg') }}" alt="product" id="photo__secondary--3" class="photos__item">
+                                {% set i = 0 %}
+                                {% for photo in product.photos %}
+                                    
+                                    {% if i != 0 %}  
+                                <img src="{{ asset(img_path ~ photo.image) }}" alt="product" id="photo__secondary--1" class="photos__item">
+                                    {% endif %}
+                                    {% set i = i + 1 %}
+                                {% endfor %}
+                                </div>
                             </div>
-                            </div>
-                            <div class="product__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quod necessitatibus tempore alias. Voluptates hic, cumque optio recusandae incidunt voluptatibus?</div>
+                            <div class="product__description">{{ product.description}}</div>
                         </div>
                         <div class="feedback__container col-md-5">
                             <div class="feedback">
                                 <h3 class="feedback__title">Связаться с автором</h3>
                                 <div class="feedback__name">
-                                    Имя: Demo
+                                    Имя: {{ product.user.name }}
                                 </div>
                                 <div class="feedback__phone">
-                                    Телефон: 7911659125
+                                    Телефон: {{ product.user.phone }}
                                 </div>
                                 <span class="feedback__span">
                                     Ваше имя:

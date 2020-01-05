@@ -59,8 +59,9 @@ easy_admin:
                     - {property: 'description', label: 'Описание'}
                     - {property: 'location', label: 'Регион'}
                     - {property: 'photos', label: 'Фото'}
+                    - photos
                     
-        Ad:
+        Ads:
             class: App\Entity\Ad
             label: 'Объявления'
             list:
@@ -83,7 +84,32 @@ easy_admin:
                     - {property: 'price', label: 'Цена'}
                     - {property: 'description', label: 'Описание'}
                     - {property: 'location', label: 'Регион'}
-                    - {property: 'photos', label: 'Фото'}            
+                    - {property: 'photos', label: 'Фото'}      
+        Ads_disabled:
+            class: App\Entity\Ad
+            label: 'На утверждении'
+            list:
+                dql_filter: 'entity.enabled != true'
+                fields:
+                    - id
+                    - {property: 'enabled', label: 'Опубликован'}
+                    - {property: 'photos[0].image', label: 'Фото', type: 'image', base_path: '%ads_images%'}
+                    - {property: 'name', label: 'Название'}
+                    - {property: 'price', label: 'Цена', type: 'string'}
+                    - {property: 'description', label: 'Описание'}
+                    - {property: 'dateAt', label: 'Время публикации'}
+                    - {property: 'location', label: 'Регион'}
+                    - {property: 'user.email', label: 'Владелец', type: 'email'}
+            show:
+                title: '%%entity_label%% (#%%entity_id%%)'
+            form: 
+                fields:
+                    - {property: 'name', label: 'Название'}
+                    - {property: 'enabled', label: 'Опубликован'}
+                    - {property: 'price', label: 'Цена'}
+                    - {property: 'description', label: 'Описание'}
+                    - {property: 'location', label: 'Регион'}
+                    - {property: 'photos', label: 'Фото'}      
                     
         Photo_ads:
             class: App\Entity\Photo
@@ -106,12 +132,13 @@ easy_admin:
             label: 'Фотографии запчастей'
             form: 
                 fields:
-                    - {property: 'product', label: 'Название товара', type: 'text'}
+                    - product
                     - {property: 'imageFile', label: 'Фото', type: 'file'}
 
             list:
-                dql_filter: 'entity.product > 0'
+                dql_filter: 'entity.product >= 0 OR (entity.product IS NULL AND entity.ad IS NULL)'
                 fields:
+                    - id
                     - {property: 'image', label: 'Фото', type: 'image', base_path: '%app.path.product_images%'}
                     - {property: 'product', label: 'Название товара', type: 'text'}
          

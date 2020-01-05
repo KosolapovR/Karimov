@@ -24,7 +24,7 @@
                         
                     <li class="ads_container__list__item d-flex">
                         <div class="ads_container__list__item__img col-sm-4">
-                            
+                            <a href="{{ path('ad_show', {'id': ad.id}) }}" class="product__item__link">
                                 {% if(ad.photos[0] is defined) %}
                                   {% set img_path = 'upload/images/ads/' ~ ad.photos[0].image %}
                                     <img src="{{ asset(img_path) }}" alt="" width='100%'> 
@@ -32,6 +32,7 @@
                                     {% set img_path = 'upload/images/products/' %}
                                     <img src="{{ asset(img_path ~ 'default-thumbnail.jpg') }}" width='100%'>
                                      {% endif %}
+                                     </a>
                         </div>
                         
                         <div class="ads_container__list__item__desc w-100">

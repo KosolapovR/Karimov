@@ -54,7 +54,7 @@ class Product
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="product", cascade={"persist"})
      */
     private $photos;
 
@@ -171,7 +171,7 @@ class Product
     public function addPhotos(Photo $photos): self
     {
         if (!$this->photos->contains($photos)) {
-            $this->photos[] = $photo;
+            $this->photos[] = $photos;
             $photos->setProduct($this);
         }
 

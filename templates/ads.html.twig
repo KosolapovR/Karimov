@@ -19,7 +19,7 @@
                     <div class="ad__item h-100">
                         <div class="ad__item__row d-flex align-items-end flex-column">
                             <div class="ad__item__col">
-                              <a href="#" class="ad__item__link">
+                              <a href="{{ path('ad_show', {'id': ad.id}) }}" class="ad__item__link">
                                   {% if(ad.photos[0] is defined) %}
                                   {% set img_path = 'upload/images/ads/' ~ ad.photos[0].image %}
                                     <img src="{{ asset(img_path) }}" alt="" class="ad__item__photo"> 
@@ -30,13 +30,13 @@
                               </a>  
                             </div>
                             <div class="ad__item__col mt-auto">
-                                <div class="ad__item__title"><a href="#">{{ ad.name }}</a></div>
+                                <div class="ad__item__title"><a href="{{ path('ad_show', { 'id': ad.id}) }}">{{ ad.name }}</a></div>
                                 <div class="ad__item__published">{{ ad.dateAt|date('d.m.y') }}</div>
                                 <div class="ad__item__description">{{ ad.description }}</div>
                                 <div class="ad__item__price">{{ ad.price }} &#8381;</div>
                             </div>     
                         </div>
-                      <a href="#"  class="ad__item__hidden-layer"></a>
+                      <a href="{{ path('ad_show', { 'id': ad.id}) }}"  class="ad__item__hidden-layer"></a>
                     </div>
                     </li>
                     {% endfor %}

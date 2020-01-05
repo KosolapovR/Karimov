@@ -162,8 +162,8 @@ class Ad
 
     public function addPhoto(Photo $photo): self
     {
-        if (!$this->photos->contains($photo)) {
-            $this->photos[] = $photo;
+        if (!$this->photos->contains($photos)) {
+            $this->photos[] = $photos;
             $photo->setAd($this);
         }
 
