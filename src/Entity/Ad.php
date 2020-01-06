@@ -54,7 +54,7 @@ class Ad
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="ad", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="ad", cascade={"persist", "remove"})
      */
     private $photos;
 
@@ -162,8 +162,8 @@ class Ad
 
     public function addPhoto(Photo $photo): self
     {
-        if (!$this->photos->contains($photos)) {
-            $this->photos[] = $photos;
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
             $photo->setAd($this);
         }
 

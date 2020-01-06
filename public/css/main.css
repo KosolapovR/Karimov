@@ -493,6 +493,10 @@ footer{
 }
 
 .btn--new-ad-send{
+    border: 0;
+}
+
+.btn--new-ad-send{
     padding: 2px 7px;
     width: 120px;
 }

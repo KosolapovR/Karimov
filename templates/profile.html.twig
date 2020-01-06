@@ -14,7 +14,7 @@
                 <span class="bold">{{app.user.name|capitalize}}</span>, в данном разделе вы можете опубликовать объявления. Все объявления проходят одобрение модератором, после чего публикуются в разделе "Объявления".
             </div>
             </aside>
-            <div class="ads_container col">
+            <div class="col">
             <div class="btn btn-search btn--new-ad"><a href="{{ path('profile_new')}}">Создать объявление</a></div>
             <div class="ads_container__list">
               {% if (ads|length != 0) %}

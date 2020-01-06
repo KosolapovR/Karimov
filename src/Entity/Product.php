@@ -168,23 +168,23 @@ class Product
         return $this->photos;
     }
 
-    public function addPhotos(Photo $photos): self
+    public function addPhotos(Photo $photo): self
     {
-        if (!$this->photos->contains($photos)) {
-            $this->photos[] = $photos;
-            $photos->setProduct($this);
+        if (!$this->photos->contains($photo)) {
+            $this->photos[] = $photo;
+            $photo->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removePhotos(Photo $photos): self
+    public function removePhotos(Photo $photo): self
     {
-        if ($this->photos->contains($photos)) {
-            $this->photos->removeElement($photos);
+        if ($this->photos->contains($photo)) {
+            $this->photos->removeElement($photo);
             // set the owning side to null (unless already changed)
-            if ($photos->getProduct() === $this) {
-                $photos->setProduct(null);
+            if ($photo->getProduct() === $this) {
+                $photo->setProduct(null);
             }
         }
 

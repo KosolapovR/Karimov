@@ -61,10 +61,11 @@ easy_admin:
                     - {property: 'photos', label: 'Фото'}
                     - photos
                     
-        Ads:
+        Ad:
             class: App\Entity\Ad
             label: 'Объявления'
             list:
+                dql_filter: 'entity.enabled != false'
                 fields:
                     - id
                     - {property: 'enabled', label: 'Опубликован'}
