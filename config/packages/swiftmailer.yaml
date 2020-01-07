@@ -1,3 +1,15 @@
 swiftmailer:
     url: '%env(MAILER_URL)%'
     spool: { type: 'memory' }
+    username: aksidin@gmail.com
+    password: romul1991
+    host: smtp.gmail.com
+    port: 465
+    timeout: 30
+    transport: smtp
+   # source_ip: null
+   # local_domain: null
+    encryption: ssl
+    auth_mode: login
+    logging: true
+   # delivery_whitelist: {  }

@@ -33,7 +33,7 @@ class ProductController extends AbstractController{
                 $message->setUser($em->getRepository(\App\Entity\User::class)->find(6));
                 $message->setProduct($product);            
                 $em->persist($message);
-                $em->flush();
+                //$em->flush();
                 $event = new MessageSendEvent($message);
                 $eventDispatcherInterface->dispatch(MessageSendEvent::NAME, $event);
             }
