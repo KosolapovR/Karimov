@@ -58,9 +58,15 @@ class Ad
      */
     private $photos;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="ad", cascade={"persist", "remove"})
+     */
+    private $messages;
+    
     public function __construct()
     {
         $this->photos = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,7 +157,21 @@ class Ad
 
         return $this;
     }
+    
+    function getMessages() {
+        return $this->messages;
+    }
 
+    public function addMessages(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setAd($this);
+        }
+
+        return $this;
+    }
+    
     /**
      * @return Collection|Photo[]
      */

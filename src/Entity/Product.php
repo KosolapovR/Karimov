@@ -63,12 +63,18 @@ class Product
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="product", cascade={"persist", "remove"})
+     */
+    private $messages;
 
 
     public function __construct()
     {
         $this->photos = new ArrayCollection();
         $this->dateAt = new \DateTime('now');
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,7 +165,22 @@ class Product
 
         return $this;
     }
+    
+    function getMessages() {
+        return $this->messages;
+    }
 
+    public function addMessages(Message $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+            $message->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    
     /**
      * @return Collection|Photo[]
      */

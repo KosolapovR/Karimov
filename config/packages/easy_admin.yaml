@@ -142,6 +142,9 @@ easy_admin:
                     - id
                     - {property: 'image', label: 'Фото', type: 'image', base_path: '%app.path.product_images%'}
                     - {property: 'product', label: 'Название товара', type: 'text'}
-         
+        Messages:
+            class: App\Entity\Message
+            label: 'Сообщения'
+            
         
         
