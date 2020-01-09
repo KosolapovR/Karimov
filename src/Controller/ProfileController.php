@@ -60,6 +60,7 @@ class ProfileController extends AbstractController{
                 $photo = new Photo();
                 $photo->setImage($newFilename);
                 $photo->setUpdatedAt(new \DateTime('now'));
+                
                 //$photo->setAd($ad);
                 $ad->addPhoto($photo);
                 $entityManager->persist($photo);

@@ -41,6 +41,7 @@
                         </div>
                         <div class="feedback__container col-md-5">
                             <div class="feedback">
+                                {{ form_start(messageForm) }}
                                 <h3 class="feedback__title">Связаться с автором</h3>
                                 <div class="feedback__name">
                                     Имя: {{ product.user.name }}
@@ -51,21 +52,23 @@
                                 <span class="feedback__span">
                                     Ваше имя:
                                 </span>
-                                <input type="text" class="feedback__input">
+                                {{ form_widget(messageForm.author, {'attr': {'class': 'feedback__input'}}) }}
                                 <span class="feedback__span">
                                     Адрес вашей электронной почты:
                                 </span>
-                                <input type="text" class="feedback__input">
+                                {{ form_widget(messageForm.email, {'attr': {'class': 'feedback__input'}}) }}
                                 <span class="feedback__span">
                                     Номер телефона (Опционально):
                                 </span>
-                                <input type="text" class="feedback__input">
+                                {{ form_widget(messageForm.phone, {'attr': {'class': 'feedback__input'}}) }}
                                 <span class="feedback__span">
                                     Сообщение:
                                 </span>
-                                <textarea class="feedback__textarea" name="feedback__textarea" id="feedback__textarea" cols="23" rows="3"></textarea>
+                                {{ form_widget(messageForm.text, {'attr': {'class': 'feedback__textarea', 'cols': '23', 'rows': '3'}}) }}
                                 <div class="captcha"></div>
-                                <div class="btn--send">Отправить</div>
+                                
+                                <button class="btn--send">Отправить</button>
+                                {{ form_end(messageForm) }}
                             </div>
                         </div>
                     </div>

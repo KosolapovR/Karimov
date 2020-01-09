@@ -17,7 +17,10 @@ class MessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) {
            $builder->add('author', TextType::class, ['label' => 'Ваше имя:'])
                    ->add('email', EmailType::class, ['label' => 'Адрес вашей электронной почты:'])
-                   ->add('phone', TextType::class, ['label' => 'Номер телефона (Опционально):'])
+                   ->add('phone', TextType::class, [
+                       'label' => 'Номер телефона (Опционально):',
+                        'required' => false,
+                       ])
                    ->add('text', TextareaType::class, ['label' => 'Сообщение:'])
                    ->add('user', HiddenType::class);
     }

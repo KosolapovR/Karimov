@@ -20,8 +20,13 @@ class MessageSubscriber implements EventSubscriberInterface
         /* Message $sended_message */
         $sended_message = $event->getSended_message();
         $body = $this->twig->render('email_message.html.twig', ['message' => $sended_message]);
+        if(null !== $sended_message->getProduct()){
+            $product = $sended_message->getProduct()->getName();
+        }elseif (null !== $sended_message->getAd()){
+            $product = $sended_message->getAd()->getName();
+        }
         $message = (new \Swift_Message)
-                ->setSubject('Письмо по объявлению: ' . $sended_message->getProduct()->getName())
+                ->setSubject('Письмо по объявлению: ' . $product)
                 ->setFrom($sended_message->getEmail())
                 ->setTo($sended_message->getUser()->getEmail())
                 ->setBody($body, 'text/html');

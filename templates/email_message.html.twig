@@ -1,7 +1,11 @@
 <meta charset="UTF-8" />
 <div><b>{{ message.user.name }}</b>, Вам пришло сообщение по товару
-{{ message.product.name }}
-{% if(message.author is defined) %}
+    {% if (message.product is null) %}
+        {{ message.ad.name }}
+    {% else %}
+        {{ message.ad.name }}
+    {% endif %}
+    {% if(message.author is defined) %}
     от {{ message.author }}
 {% endif %}:
 </div>
