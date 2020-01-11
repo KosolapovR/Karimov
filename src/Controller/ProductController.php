@@ -36,8 +36,10 @@ class ProductController extends AbstractController{
                 $em->flush();
                 $event = new MessageSendEvent($message);
                 $eventDispatcherInterface->dispatch(MessageSendEvent::NAME, $event);
+                
+                $products = $em->getRepository(Product::class)->findBy(['enabled' => true], ['dateAt' => 'DESC'], 4);
+                return $this->render('index.html.twig', ['products' => $products]);
             }
-            
             return $this->render('product.html.twig', [
             'product' => $product,
             'messageForm' => $form->createView(),

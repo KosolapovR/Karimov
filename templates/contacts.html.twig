@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<main>
+    <div class="wrapper">
+        <div class="contacts d-flex justify-content-around row">
+            <div class="col-sm-5 contacts--left">
+                <div class="contacts__adress">
+                    <div class="contacts__adress__icon"></div>
+                    <div class="contacts__adress__text"><span class="contacts__adress__text__span">Адрес: </span>г. Санкт-Петербург</div>
+                </div>
+                <div class="contacts__phone">
+                    <div class="contacts_phone__icon"></div>
+                   <div class="contacts__phone__text"><span class="contacts__adress__phone__span">Тел: </span>+7 (891) 651- 25-35</div> 
+                </div>
+                <div class="contacts__email">
+                    <div class="contacts__email__icon"></div>
+                   <div class="contacts__email__text"><span class="contacts__adress__email__span">Эл.почта: </span>some_email@mail.ru</div> 
+                </div>
+                <div class="contacts__inn">
+                    <div class="contacts__inn__icon"></div>
+                   <div class="contacts__inn__text"><span class="contacts__inn__text__span">ИНН: </span> 89313646979461</div> 
+                </div>
+            </div>
+            <div class="col-sm-5 contacts--right">Обратная связь</div>
+        </div>
+    </div>
+</main>
+{% endblock %}

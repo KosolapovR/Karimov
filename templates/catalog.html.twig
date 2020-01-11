@@ -5,10 +5,10 @@
                <div class="catalog-container">
                    <h4>Фото-каталог судовых запчастей</h4>
                 <ul class="category_list row dflex">
-                    <li class="catalog_list__item col-6 col-sm-4"><a href="{{ path('catalog')}}">Все запчасти</a></li>
+                    <li class="catalog_list__item col-6 col-sm-4"><a id="catalog_list__item--all" href="{{ path('catalog')}}">Все запчасти</a></li>
                     {% for category in categories%}
                         {% if category.enabled > 0 %}
-                        <li class="catalog_list__item col-6 col-sm-4"><a href="{{ path('catalog_category', {id: category.id }) }}">{{ category.name }} [{{ category.enabled}}]</a></li>
+                        <li class="catalog_list__item col-6 col-sm-4"><a href="{{ path('catalog_category', {id: category.id }) }}" data-category="{{ category.id }}">{{ category.name }} [{{ category.enabled}}]</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>

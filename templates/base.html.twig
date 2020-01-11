@@ -71,7 +71,7 @@
                   </li>    
                   {% endif %}
                     <li class="nav-item">
-                    <a class="nav-link" href="requisites.php">Реквизиты</a>
+                    <a class="nav-link" href="{{ path('contacts') }}">Контакты</a>
                   </li>
                   {% if is_granted('ROLE_ADMIN') %}
                       <li class="nav-item">
@@ -151,6 +151,25 @@
             entitySelector.html('');
             }
         });
+        let path = window.location.href;       
+        let current_category = path.split('/');
+        current_category = current_category[current_category.length - 1];
+
+        let $categories = $('.catalog_list__item a');
+        if (current_category === 'catalog'){
+            $('#catalog_list__item--all').addClass('active_category');
+           
+        }else{
+            $('#catalog_list__item--all').removeClass('active_category');
+            $categories.each(function(index, item){
+                if(item.dataset.category === current_category){
+                    $(item).addClass('active_category');
+                }else{
+                    $(item).removeClass('active_category');
+                }
+        });
+        }
+        
     });
 </script>
         {% endblock %}

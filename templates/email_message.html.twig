@@ -3,7 +3,7 @@
     {% if (message.product is null) %}
         {{ message.ad.name }}
     {% else %}
-        {{ message.ad.name }}
+        {{ message.product.name }}
     {% endif %}
     {% if(message.author is defined) %}
     от {{ message.author }}

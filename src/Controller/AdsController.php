@@ -11,7 +11,6 @@ use App\Form\MessageType;
 use App\Entity\Ad;
 use App\Entity\Product;
 use App\Entity\Message;
-use App\Entity\User;
 
 class AdsController extends AbstractController{
     
@@ -28,11 +27,7 @@ class AdsController extends AbstractController{
     /**
      * @Route("/ads/show/{id}", name="ad_show")
      */
-    public function show(
-            Ad $ad,
-            Request $request,
-            EventDispatcherInterface $eventDispatcherInterface
-            )
+    public function show(Ad $ad, Request $request, EventDispatcherInterface $eventDispatcherInterface)
     {
         if($ad->getEnabled()){
             $message = new Message();
@@ -47,11 +42,11 @@ class AdsController extends AbstractController{
                 $message->setAd($ad);            
                 $em->persist($message);
                 $em->flush();
-                
                 $event = new MessageSendEvent($message);
                 $eventDispatcherInterface->dispatch(MessageSendEvent::NAME, $event);
+                $products = $em->getRepository(Product::class)->findBy(['enabled' => true], ['dateAt' => 'DESC'], 4);
+                return $this->render('index.html.twig', ['products' => $products]);
             }
-            
             return $this->render('ad.html.twig', [
             'product' => $ad,
             'messageForm' => $form->createView()

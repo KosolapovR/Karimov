@@ -13,6 +13,7 @@ class IndexController extends AbstractController{
      * @Route("/", name="main")
      */
     public function index(){
+        $env = $this->getParameter('kernel.environment');
         
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository(Product::class)->findBy(['enabled' => true], ['dateAt' => 'DESC'], 4);
