@@ -4,13 +4,19 @@
     <div class="wrapper">
         <section class="ads__container row">
             <aside class="search col-md-3">
-                <span class="your_search">Ваш поиск:</span><input type="text">
+                {{ form_start(adsSortForm) }}
+                <span class="your_search">Ваш поиск:</span>
+                {{ form_widget(adsSortForm.pattern) }}
                 <span class="show_only">Показать только:</span>
-                <input type="checkbox"><span class="adds_with_photo">Объявления с фотографиями</span>
+                {{ form_widget(adsSortForm.onlyImg) }}
+                <span class="adds_with_photo">Объявления с фотографиями</span>
                 <span class="price">Цена</span>
-                <span class="price--min">Min: </span><input type="text" name=price_min><br>
-                <span class="price-max">Max:</span><input type="text" name=price_max><br>
-               <div class="btn--search--container"> <div class="btn btn-search">Применить</div></div>
+                <span class="price--min">Min: </span>
+                {{ form_widget(adsSortForm.min_price) }}<br>
+                <span class="price-max">Max:</span>
+                {{ form_widget(adsSortForm.max_price, {'attr': {'name': 'price_max'}}) }}<br>
+               <div class="btn--search--container"> <button class="btn btn-search">Применить</button></div>
+               {{ form_end(adsSortForm, {'attr': {'name': 'price_max'}}) }}
             </aside>
             <div class="col"><span class="ads__title">Объявления</span>
                 <ul class="ads row">

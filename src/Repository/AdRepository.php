@@ -19,22 +19,48 @@ class AdRepository extends ServiceEntityRepository
         parent::__construct($registry, Ad::class);
     }
 
-    // /**
-    //  * @return Ad[] Returns an array of Ad objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Ad[] Returns an array of Ad objects
+      */
+    
+    public function sortingAds($pattern, $imgOnly, $min, $max)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+        if($imgOnly){
+            /** QueryBuilder $qb */
+        $qb = $this->createQueryBuilder('a');
+        $qb
+            ->join('a.photos', 'p')
+            ->andWhere( $qb->expr()->like('a.name', ':pattern'))
+            //->andWhere($qb->expr()->isNotNull('a.photos'))
+            ->andWhere('a.price >= :min')
+            ->andWhere('a.price <= :max') 
+            ->setParameter('pattern', '%'. $pattern . '%')
+            ->setParameter('min', $min)
+            ->setParameter('max', $max)
+            ->orderBy('a.price', 'ASC')
             ->getQuery()
-            ->getResult()
         ;
+        
+        $query = $qb->getQuery();
+        }else{
+            $qb = $this->createQueryBuilder('a');
+            $qb
+                ->andWhere( $qb->expr()->like('a.name', ':pattern'))
+                ->andWhere('a.price >= :min')
+                ->andWhere('a.price <= :max') 
+                ->setParameter('pattern', '%'. $pattern . '%')
+                ->setParameter('min', $min)
+                ->setParameter('max', $max)
+                ->orderBy('a.price', 'ASC')
+            ;
+            
+            $query = $qb->getQuery();
+        }
+        
+        return $query->execute();
+        
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Ad

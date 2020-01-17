@@ -34,7 +34,7 @@ class Ad
     private $location;
 
     /**
-     * @ORM\Column(type="string", length=60, nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $price;
 
