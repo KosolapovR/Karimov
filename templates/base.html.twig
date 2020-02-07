@@ -1,177 +1,185 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block title %}Karimov{% endblock %}</title>
-        {% block stylesheets %}
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Karimov{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+              crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600i,700&display=swap" rel="stylesheet">
-        {% endblock %}
-    </head>
-    <body>
-      <div class="content">
-       <header class=''>
-           <div class="wrapper row no-gutters">
+    {% endblock %}
+</head>
+<body>
+<div class="content">
+    <header class=''>
+        <div class="wrapper row no-gutters">
             <div class="left_header col-sm-7">
                 <div class="logo__title">ИП КАРИМОВ</div>
                 <div class="logo__subtitle">
-                техническое снабжение судоходных компаний
+                    техническое снабжение судоходных компаний
+                </div>
+                <div class="d-flex">
+                    <div class="phone"><span>Тел:</span> +7 (904) 647-51-54</div>
+                    <div class="email"><span>Email:</span> karyulay@gmail.com</div>
                 </div>
             </div>
-            <div class="right_header col-sm-5 align-self-center">
-               <div class="login__container d-flex justify-content-end">
-                   {% if is_granted('ROLE_USER') %}
-                       <div class="user d-flex ">
+            <div class="right_header col-sm-5">
+                <div class="login__container d-flex justify-content-end">
+                    {% if is_granted('ROLE_USER') %}
+                        <div class="user d-flex ">
                             <div class="user_icon"></div>
                             <span class="user_name">{{ app.user.email }}</span>
-                       </div> 
-                    <a href="{{ path('logout') }}" class="login">Выйти</a>
+                        </div>
+                        <a href="{{ path('logout') }}" class="login">Выйти</a>
                     {% else %}
-                   <a href="{{ path('login') }}" class="login">Войти</a>
-                   <a href="{{ path('registration') }}" class="registration">Зарегистрироваться</a>
-                   {% endif %}
-               </div>
+                        <a href="{{ path('login') }}" class="login">Войти</a>
+                        <a href="{{ path('registration') }}" class="registration">Зарегистрироваться</a>
+                    {% endif %}
+                </div>
                 <div class="input-group w-75 ml-auto">
                     <input id="search" type="text" class="form-control" placeholder="Поиск по сайту">
                     <div id="preloader"></div>
                     <div class="input-group-append">
-                      <button class="btn btn-secondary" type="button">
-                        <i class="fa fa-search"></i>
-                      </button>
+                        <button class="btn btn-secondary" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
                     <div class="pop_up_search"></div>
                 </div>
-                <div class="phone">Тел: 89994445152</div>
-                <div class="email">Email: example@mail.ru</div>
             </div>
-            </div>
-        </header>
-        <div class="nav__container">       
-        <nav class="wrapper navbar navbar-light navbar-expand-sm">
-              <a class="navbar-brand" href="#"></a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav row w-100">
-                  <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('main') }}">Главная <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ path('catalog') }}">Каталог</a>
-                  </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="{{ path('ads') }}">Объявления</a>
-                  </li>
-                  {% if is_granted('ROLE_USER') %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ path('profile') }}">Подать объявление</a>
-                  </li>    
-                  {% endif %}
-                    <li class="nav-item">
-                    <a class="nav-link" href="{{ path('contacts') }}">Контакты</a>
-                  </li>
-                  {% if is_granted('ROLE_ADMIN') %}
-                      <li class="nav-item">
-                       <a class="nav-link" href="/admin">Админ.панель</a>
-                        </li>
-                   {% endif %}
-                </ul>
-              </div>
-            </nav>
-        </div>        
-        {% block body %}{% endblock %}
         </div>
-        <footer>
-            <div class="footer__contacts wrapper p-5">8951659185</div>
-        </footer>
-        {% block javascripts %}
-            <script
+    </header>
+    <div class="nav__container">
+        <nav class="wrapper navbar navbar-light navbar-expand-sm">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav row w-100">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('main') }}">Главная <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('catalog') }}">Каталог</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('ads') }}">Объявления</a>
+                    </li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('profile') }}">Подать объявление</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('contacts') }}">Контакты</a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">Админ.панель</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+    {% block body %}{% endblock %}
+</div>
+<footer>
+    <div class="footer__contacts_wrapper wrapper p-5">+7 (904) 647-51-54</div>
+</footer>
+{% block javascripts %}
+    <script
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-            <script src="https://kit.fontawesome.com/0f541523eb.js" crossorigin="anonymous"></script>
-            <script src="{{ asset('js/main.js') }}"></script>
-            <script type="text/javascript">
-    jQuery(document).ready(function() {
-        var searchRequest = null;
-        
-        /*$('.input-group-append .btn').on('click', function(){
-            let link = $(".finded a").attr("href");
-            if(link !== undefined){
-                document.location.href = link;
-            }
-        });*/
-        
-        $('.input-group-append').hide();
-        $('#preloader').hide();
-        
-        $("#search").keyup(function() {
-            var minlength = 3;
-            var that = this;
-            var value = $(this).val();
-            var entitySelector = $(".pop_up_search");
-            if (value.length >= minlength ) {
-                if (searchRequest != null) searchRequest.abort();
-                $('#preloader').show();
-                searchRequest = $.ajax({
-                    type: "GET",
-                    url: "{{ path('ajax_search') }}",
-                    data: {
-                        'text' : value
-                    },
-                    dataType: "text",
-                    success: function(msg){
-                        $('#preloader').hide();
-                        console.log(msg);
-                         entitySelector.html('');
-                        //we need to check if the value is the same
-                        if (value==$(that).val()) {
-                            var result = JSON.parse(msg);
-                            $.each(result, function(key, arr) {
-                                $.each(arr, function(id, value) {
-                                    if (key == 'products') {
-                                        if (id != 'error') {
-                                            entitySelector.append('<li class="finded"><a href="/product/show/'+id+'">'+value+'</a></li>');
-                                        } else {
-                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
-                                        }
-                                    }
-                                });
-                            });
-                        }
-                     }
-                });
-            }  
-            else{
-            entitySelector.html('');
-            }
-        });
-        let path = window.location.href;       
-        let current_category = path.split('/');
-        current_category = current_category[current_category.length - 1];
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0f541523eb.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            var searchRequest = null;
 
-        let $categories = $('.catalog_list__item a');
-        if (current_category === 'catalog'){
-            $('#catalog_list__item--all').addClass('active_category');
-           
-        }else{
-            $('#catalog_list__item--all').removeClass('active_category');
-            $categories.each(function(index, item){
-                if(item.dataset.category === current_category){
-                    $(item).addClass('active_category');
-                }else{
-                    $(item).removeClass('active_category');
+            /*$('.input-group-append .btn').on('click', function(){
+                let link = $(".finded a").attr("href");
+                if(link !== undefined){
+                    document.location.href = link;
                 }
+            });*/
+
+            $('.input-group-append').hide();
+            $('#preloader').hide();
+
+            $("#search").keyup(function () {
+                var minlength = 3;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $(".pop_up_search");
+                if (value.length >= minlength) {
+                    if (searchRequest != null) searchRequest.abort();
+                    $('#preloader').show();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('ajax_search') }}",
+                        data: {
+                            'text': value
+                        },
+                        dataType: "text",
+                        success: function (msg) {
+                            $('#preloader').hide();
+                            console.log(msg);
+                            entitySelector.html('');
+                            //we need to check if the value is the same
+                            if (value == $(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function (key, arr) {
+                                    $.each(arr, function (id, value) {
+                                        if (key == 'products') {
+                                            if (id != 'error') {
+                                                entitySelector.append('<li class="finded"><a href="/product/show/' + id + '">' + value + '</a></li>');
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    entitySelector.html('');
+                }
+            });
+            let path = window.location.href;
+            let current_category = path.split('/');
+            current_category = current_category[current_category.length - 1];
+
+            let $categories = $('.catalog_list__item a');
+            if (current_category === 'catalog') {
+                $('#catalog_list__item--all').addClass('active_category');
+
+            } else {
+                $('#catalog_list__item--all').removeClass('active_category');
+                $categories.each(function (index, item) {
+                    if (item.dataset.category === current_category) {
+                        $(item).addClass('active_category');
+                    } else {
+                        $(item).removeClass('active_category');
+                    }
+                });
+            }
+
         });
-        }
-        
-    });
-</script>
-        {% endblock %}
-    </body>
+    </script>
+{% endblock %}
+</body>
 </html>

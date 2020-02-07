@@ -59,7 +59,7 @@ class AdsController extends AbstractController{
 
             if($form->isSubmitted() && $form->isValid()){
                 $user = $ad->getUser();
-                $user->__load();
+               // $user->__load();
                 $message->setUser($user);
                 $message->setAd($ad);            
                 $em->persist($message);
@@ -74,6 +74,7 @@ class AdsController extends AbstractController{
             'messageForm' => $form->createView()
         ]);
         }else{
+            $em = $this->getDoctrine()->getManager();
             $products = $em->getRepository(Product::class)->findBy(['enabled' => true], ['dateAt' => 'DESC'], 4);
             return $this->render('index.html.twig', ['products' => $products]);
         }
