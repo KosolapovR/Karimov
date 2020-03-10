@@ -15,7 +15,7 @@ html, body, main {
 body {
     display: flex;
     flex-direction: column;
-    background: url("../images/bg-light.jpg");
+    /*background: url("../images/bg-light.jpg");*/
     background-attachment: fixed;
 }
 
@@ -47,8 +47,8 @@ section {
 /* HEADER */
 header {
     padding: 10px 0;
-    background: rgb(42,37,138);
-    background: linear-gradient(283deg, rgba(42,37,138,1) 0%, rgba(9,9,121,1) 10%, rgba(0,212,255,1) 100%);
+    background: rgb(42, 37, 138);
+    background: linear-gradient(283deg, rgba(42, 37, 138, 1) 0%, rgb(76, 128, 192) 10%, rgba(0, 212, 255, 1) 100%);
     height: auto;
 }
 
@@ -149,12 +149,17 @@ header {
     margin-top: 7px;
     font-size: 16px;
 }
+
+.phone:hover, .email:hover {
+    text-decoration: underline;
+}
+
 .phone span,
-.email span{
+.email span {
     font-style: italic;
 }
 
-.phone{
+.phone {
     margin-right: 15px;
     padding-right: 15px;
     border-right: 1px solid #555;
@@ -164,9 +169,9 @@ header {
     background: #EDEDED;
     border-top: 1px solid #BFBFBF;
     border-bottom: 1px solid #BFBFBF;
-    -webkit-box-shadow: 0px 9px 13px 0px rgba(0,0,0,0.45);
-    -moz-box-shadow: 0px 9px 13px 0px rgba(0,0,0,0.45);
-    box-shadow: 0px 9px 13px 0px rgba(0,0,0,0.45);
+    -webkit-box-shadow: 0px 9px 13px 0px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0px 9px 13px 0px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 9px 13px 0px rgba(0, 0, 0, 0.45);
 }
 
 .nav-item {
@@ -542,18 +547,27 @@ header {
 }
 
 .price--min,
-.price--max{
+.price--max {
     width: 50px;
 }
 
 footer {
+
     background: #2f2f2f;
     flex-shrink: 0;
 }
 
 .footer__contacts_wrapper {
-    height: 70px;
+    height: 50px;
     color: #fff;
+}
+
+.footer__contacts_wrapper a {
+    color: #fff;
+}
+
+.footer__contacts_wrapper a:hover {
+    text-decoration: underline;
 }
 
 .ads {
@@ -708,13 +722,33 @@ input[name=price_min] {
 /* contacts */
 
 .contacts {
+    margin-top: 30px;
     padding: 10px 24px;
 }
 
 .contacts--left,
 .contacts--right {
     height: 300px;
-    border: 1px solid #666;
-    border-radius: 5px;
+}
 
+.contacts__item:first-child {
+    border-top: 1px solid #CCC;
+}
+
+.contacts__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid #CCC;
+}
+
+.contacts__span{
+    color: #888;
+}
+
+@media(max-width: 578px){
+    .nav-item{
+        margin-left: 33px;
+        margin-right: 0;
+    }
 }
